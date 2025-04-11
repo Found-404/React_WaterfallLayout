@@ -126,4 +126,5 @@ export default Demo
 
 ## Other versions
 
-- [React-Waterfall]()
+- [React-Waterfall](https://github.com/Found-404/React_WaterfallLayout)
+- [Vue-Waterfall](https://github.com/Found-404/Vue3_WaterfallLayout)
