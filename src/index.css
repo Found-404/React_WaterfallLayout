@@ -1,0 +1,45 @@
+.waterfall-slot {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.waterfall {
+  position: relative;
+  /*overflow: hidden; cause clientWidth = 0 in IE if height not bigger than 0 */
+}
+
+.item-move {
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+  -webkit-transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.item {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  font-size: 1.2em;
+  color: rgb(0, 158, 107);
+}
+
+.item:after {
+  content: attr(index);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.wf-transition {
+  transition: opacity 0.3s ease;
+  -webkit-transition: opacity 0.3s ease;
+}
+
+.wf-enter {
+  opacity: 0;
+}

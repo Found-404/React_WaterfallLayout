@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waterfall-Vue3-Demo</title>
+    <!-- 加载 React 和 ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel 用于编译 JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Found-404/React_WaterfallLayout@1.0.0/dist/Waterfall-React.umd.js"></script>
+
+    <link rel="stylesheet" href="./item.css" />
+    <!-- 获取随机项目 -->
+    <script src="./utils.js"></script>
+    <style>
+      .item-move {
+        transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+        -webkit-transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- 注意：type="text/babel" 是必须的 -->
+    <script type="text/babel">
+      function MyComponent() {
+        return <h1>Hello from React!</h1>;
+      }
+
+      // 渲染组件
+      ReactDOM.createRoot(document.getElementById("root")).render(
+        <MyComponent />
+      );
+    </script>
+  </body>
+</html>
