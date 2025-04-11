@@ -8,11 +8,16 @@ export default defineConfig({
     react: "react", // 确保 Vite 正确解析 react 模块
     "react/jsx-runtime": "react/jsx-runtime", // 添加别名
   },
+  define: {
+    "process.env.NODE_ENV": JSON.stringify(
+      process.env.NODE_ENV || "production"
+    ),
+  },
   build: {
     lib: {
       entry: "src/index.js", // 组件库入口文件
-      name: "Waterfall-React", // UMD全局变量名
-      fileName: "Waterfall-React", // 输出文件名
+      name: "WaterfallReact", // UMD全局变量名
+      fileName: "WaterfallReact", // 输出文件名
     },
     rollupOptions: {
       external: ["react", "react-dom"], // 避免打包React

@@ -1,50 +1,8 @@
-<p align="center">
-    <img alt="logo" src="waterFullLogo.png"  style="margin-bottom: 10px;">
-</p>
-
-<h1 align="center">WaterFull</h1>
-<p align="center">
-  <a href="https://github.com/MopTym/vue-waterfall">Vue2</a>
-  &nbsp;
-  ·
-  &nbsp;
-  <a href="https://github.com/Found-404/Vue3_WaterfallLayout">Vue3</a>
-  &nbsp;
-  ·
-  &nbsp;
-  <a href="https://github.com/Found-404/React_WaterfallLayout/tree/main?tab=readme-ov-file">React</a>
-</p>
-
-# React-waterfall
-
-A waterfall layout component for React.js .
-
-The address of the waterfall component of vue2 version is [vue-waterfall](https://github.com/MopTym/vue-waterfall).
-
-This project is the waterfall layout of react version.
-
-## Effect Preview
-
-- [React-Waterfall](https://found-404.github.io/React_WaterfallLayout/)
-
-## Installation
-
-```shell
-npm install --save waterfall-React
-```
-
-```html
-<script src="https://cdn.jsdelivr.net/gh/Found-404/Vue3_WaterfallLayout@1.0.0/dist/Waterfall-React.umd.js"></script>
-```
-
-## Introduction
-
-```js
 import React, { useEffect, useState, useRef } from 'react'
-import { Waterfall, WaterfallSlot } from "./index"
-import ItemFactory from "./utils"
+import { Waterfall, WaterfallSlot } from "./waterfall/index.js"
+import ItemFactory from "./waterfall/utils.js"
 
-import "./index.css"
+import "./waterfall/index.css"
 
 
 
@@ -121,9 +79,3 @@ function Demo() {
 }
 
 export default Demo
-
-```
-
-## Other versions
-
-- [React-Waterfall]()

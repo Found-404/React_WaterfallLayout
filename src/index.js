@@ -1,11 +1,7 @@
-import Waterfall from "./Waterfall";
-import WaterfallSlot from "./WaterfallSlot";
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-// 具名导出（用户通过 import { Waterfall } 使用）
-export { Waterfall, WaterfallSlot };
+import App from "./app.jsx";
 
-// 默认导出（用户通过 import Waterfall from "waterfall-v3" 使用）
-export default {
-  Waterfall: Waterfall,
-  WaterfallSlot: WaterfallSlot,
-};
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
