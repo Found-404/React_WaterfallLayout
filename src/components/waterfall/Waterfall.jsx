@@ -177,6 +177,8 @@ function Waterfall(props) {
 
     function getOptions() {
         const $maxLineGap = maxLineGap ? +maxLineGap : lineGap;
+        console.log(grow);
+        
         return {
             align: ~["left", "right", "center"].indexOf(align) ? align : "left",
             line: ~["v", "h"].indexOf(line) ? line : "v",

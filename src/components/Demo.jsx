@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Waterfall, WaterfallSlot } from "./waterfall/index.js"
+import { Waterfall, WaterfallSlot } from "waterfall2-react"
+// import { Waterfall, WaterfallSlot } from "./waterfall/index.js"
 import ItemFactory from "./waterfall/utils.js"
 
 import "./waterfall/index.css"
@@ -9,8 +10,9 @@ import "./waterfall/index.css"
 function Demo() {
     const [items, setItems] = useState(ItemFactory.get(100))
     const [loading, setLoading] = useState(false);
-    const [line, setLine] = useState(true);
-    const containerRef = useRef(null);
+    const [line, setLine] = useState(false);
+    const [grow, setGrow] = useState([1, 2, 3]);
+
     // 添加项目
     // 加载更多数据
     const loadMore = () => {
@@ -24,6 +26,9 @@ function Demo() {
     };
     const switchLine = () => {
         setLine(!line)
+    }
+    const switchGrow = () => {
+        setGrow([1, 1])
     }
     const switchWidth = () => {
         setItems(items.map((e, index) => {
@@ -65,8 +70,9 @@ function Demo() {
             <button onClick={switchLine}>switchLine</button>
             <button onClick={switchWidth}>switchWidth</button>
             <button onClick={Refresh}>Refresh</button>
+            <button onClick={switchGrow}>switchGrow</button>
 
-            <Waterfall line={line ? 'h' : 'v'} lineGap={200} minLineGap={180} maxLineGap={220} >
+            <Waterfall line={line ? 'h' : 'v'} lineGap={200} minLineGap={180} maxLineGap={220} grow={grow}>
                 {
                     items.map((e, index) => <WaterfallSlot width={e.width} height={e.height} key={e.index} order={index} moveClass="item-move">
                         <div className="item" index={e.index} style={e.style} ></div>
