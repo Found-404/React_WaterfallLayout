@@ -15,7 +15,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: "src/index.js", // 组件库入口文件
+      entry: "src/components/waterfall/index.js", // 组件入口文件
       name: "WaterfallReact", // UMD全局变量名
       fileName: "WaterfallReact", // 输出文件名
     },

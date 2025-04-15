@@ -1,9 +1,9 @@
 {
-  "name": "waterfall-react",
+  "name": "waterfall2-react",
   "version": "1.0.0",
   "description": "A React waterfall component",
-  "main": "./dist/Waterfall-React.mjs",
-  "module": "./dist/Waterfall-React.mjs",
+  "main": "./dist/WaterfallReact.mjs",
+  "module": "./dist/WaterfallReact.umd.js",
   "scripts": {
     "start": "webpack serve --mode development",
     "buildWeb": "webpack --mode production",
