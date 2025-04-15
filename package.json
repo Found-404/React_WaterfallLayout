@@ -1,6 +1,6 @@
 {
   "name": "waterfall2-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React waterfall component",
   "main": "./dist/WaterfallReact.mjs",
   "module": "./dist/WaterfallReact.umd.js",
