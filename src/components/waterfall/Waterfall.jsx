@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react'
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { horizontalLineProcessor, verticalLineProcessor, FamilyContext } from "./model.js";
 // import "./index.css"
 const MOVE_CLASS_PROP = "_wfMoveClass";
@@ -98,7 +98,7 @@ function Waterfall(props) {
     const slotRefs = useRef([]);
     const virtualRects = useRef([]);
     const [metas, setMetas] = useState([]);
-    function reflow() {
+    const reflow = useCallback(() => {
         if (!waterfallRef.current) return;
         let width = waterfallRef.current.clientWidth;
         setMetas(() => {
@@ -118,7 +118,7 @@ function Waterfall(props) {
             }, 0);
             return newMetas
         })
-    }
+    }, [line, align, lineGap, minLineGap, maxLineGap, singleMaxWidth, fixedHeight, grow]);
 
     // 渲染
     function render(rects, metas) {
@@ -154,26 +154,35 @@ function Waterfall(props) {
     }
 
     const token = useRef(null)
-    // 防抖 清除定时器，重新计时
-    function reflowHandler() {
+    const reflowRef = useRef(reflow);
+    useEffect(() => {
+        reflowRef.current = reflow;
+    }, [reflow]);
+
+    // 防抖 处理 resize
+    const handleResize = useCallback(() => {
         clearTimeout(token.current);
-        token.current = setTimeout(reflow, interval)
-    }
+        token.current = setTimeout(() => {
+            if (reflowRef.current) {
+                reflowRef.current();
+            }
+        }, interval);
+    }, [interval]);
 
-    // 监听props中的autoResize
-    const WatchAutoResize = () => {
-        on(waterfallRef.current, getTransitionEndEvent(), tidyUpAnimations, true);
-        autoResizeHandler(autoResize);
-    };
-
-    // 根据传入的props-autoResize 【开启/关闭】监听
-    function autoResizeHandler(autoResize) {
-        if (autoResize === false || !autoResize) {
-            off(window, "resize", reflowHandler, false);
-        } else {
-            on(window, "resize", reflowHandler, false);
+    useEffect(() => {
+        if (autoResize) {
+            on(window, "resize", handleResize, false);
         }
-    }
+        if (waterfallRef.current) {
+            on(waterfallRef.current, getTransitionEndEvent(), tidyUpAnimations, true);
+        }
+        return () => {
+            off(window, "resize", handleResize, false);
+            if (waterfallRef.current) {
+                off(waterfallRef.current, getTransitionEndEvent(), tidyUpAnimations, true);
+            }
+        };
+    }, [autoResize, handleResize]);
 
     function getOptions() {
         const $maxLineGap = maxLineGap ? +maxLineGap : lineGap;
@@ -199,10 +208,6 @@ function Waterfall(props) {
         processor.calculate(vm, options, metas, styles);
     }
 
-    useEffect(() => {
-        WatchAutoResize()
-        reflowHandler();
-    }, [])
     // 使用 useMemo 来确保 children 变化时才更新
     const stableChildren = useMemo(() => props.children, [props.children]);
 
@@ -223,11 +228,13 @@ function Waterfall(props) {
             }
         });
     });
+    const contextValue = useMemo(() => ({
+        reflow
+    }), [reflow]);
+
     return (
         <div className='waterfall' ref={waterfallRef}>
-            <FamilyContext.Provider value={{
-                reflow
-            }}>
+            <FamilyContext.Provider value={contextValue}>
                 {clonedChildren}
             </FamilyContext.Provider>
         </div>
