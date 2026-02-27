@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Waterfall, WaterfallSlot } from "waterfall2-react"
-// import { Waterfall, WaterfallSlot } from "./waterfall/index.js"
+// import { Waterfall, WaterfallSlot } from "waterfall2-react"
+import { Waterfall, WaterfallSlot } from "./waterfall/index.js"
 import ItemFactory from "./waterfall/utils.js"
 
 import "./waterfall/index.css"
